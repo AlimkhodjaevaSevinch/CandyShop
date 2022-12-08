@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="col-lg-3 mt-5">
+        <div class="list-group">
+            <h1>{{ category.name }}</h1>
+        </div>
+    </div>
+    <div class="row">
+          {% for candy in candies %}
+          <div class="col-lg-2 col-md-6 mb-4 ">
+            <div class="card h-100">
+              <div class="card-body">
+                <h4 class="card-title">
+                  <a>{{ candy.title }}</a>
+                </h4>
+                <h5>{{ candy.price }} byn</h5>
+                  <form method="post" action="{% url 'add_to_cart' candy.id %}">
+                      <div class="form-group">
+                             <input type="number" class="form-control" name="amount" min="1" id="number">
+                        </div>
+                      <input type="submit" class="btn btn-success btn-buy" value="Add to Cart">
+                      {% csrf_token %}
+                  </form>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+    </div>
+{% endblock %}

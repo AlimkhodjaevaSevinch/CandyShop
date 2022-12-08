@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<br>
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="row">#</th>
+        <th scope="col">Candy title</th>
+        <th scope="col">Amount</th>
+        <th scope="col">Price</th>
+        <th scope="col">Total item price</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for item in candy_items %}
+    <tr>
+        <td>{{ forloop.counter }}</td>
+        <td>{{ item.candy.title }}</td>
+        <td>{{ item.amount }} units</td>
+        <td>{{ item.candy.price }}</td>
+        <td>{{ item.total }}</td>
+        {% endfor %}
+    </tr>
+</table>
+<h4>Total price: {{ total_price }}</h4>
+
+<tr class="text-left">
+    <form method="post" action="{% url 'create_order' %}">
+        <table class="table">
+            <td>
+                <strong>{{ order_form }}</strong>
+            </td>
+        </table>
+        <input type="submit" class="btn btn-success btn-buy" value="checkout">
+        {% csrf_token %}
+    </form>
+    <br>
+    {% endblock %}

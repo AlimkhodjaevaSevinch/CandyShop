@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+      <div class="col-lg-3 mt-5">
+        <div class="list-group">
+          {% for category in categories %}
+            <a href="{% url 'candies_list' category.slug %}" class="list-group-item"><h2>{{ category.name }}</h2></a>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+</div>
+{% endblock %}

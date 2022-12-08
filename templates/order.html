@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<table>
+<tbody>
+    {% for item in candy_items %}
+    <tr>
+        <td>{{ item.candy.title }}</td>
+        <td>{{ item.amount }}</td>
+        <td>{{ item.candy.price }}</td>
+        <td>{{ item.total }}</td>
+        {% endfor %}
+    </tr>
+</table>
+
+{% endblock %}
